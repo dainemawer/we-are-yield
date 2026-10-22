@@ -1,6 +1,6 @@
 # We Are Yield
 
-Marketing site for [Yield](https://weareyield.com), a digital consultancy.
+Marketing site for [Yield](https://www.weareyield.digital), a digital consultancy.
 Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · deployed on Vercel.
 
 ## Develop

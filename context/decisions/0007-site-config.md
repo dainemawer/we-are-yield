@@ -3,7 +3,7 @@
 **Status:** accepted (2026-10-22)
 
 **Decision.** `src/config/site.ts` holds identity (name, URL
-`https://weareyield.com`, email, tagline), outbound links, services, values,
+`https://www.weareyield.digital`, email, tagline), outbound links, services, values,
 community and social links. Metadata, JSON-LD, sitemap, robots, manifest and
 the UI all read from it.
 

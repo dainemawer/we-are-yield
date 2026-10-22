@@ -12,6 +12,6 @@ export function contactEnv() {
     // Must be an address on a domain verified in Resend.
     from:
       process.env.CONTACT_FROM_EMAIL ||
-      `Yield Website <website@weareyield.com>`,
+      `Yield Website <website@weareyield.digital>`,
   };
 }

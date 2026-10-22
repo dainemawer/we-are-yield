@@ -11,14 +11,14 @@ export type ServiceName = (typeof services)[number]["name"];
 export const site = {
   name: "Yield",
   legalName: "Yield",
-  url: "https://weareyield.com",
+  url: "https://www.weareyield.digital",
   title: "Yield — Outcomes, by design.",
   tagline: "Outcomes, by design.",
   description:
     "Yield is a bold digital consultancy that helps businesses move faster, think smarter, and build leaner. Rapid MVPs, AI automation and digital strategy.",
   shortDescription:
     "Rapid MVPs, AI automation and digital strategy for startups and growing businesses.",
-  email: "hello@weareyield.com",
+  email: "hello@weareyield.digital",
   themeColor: "#0e0d0c",
   copyrightYear: 2026,
 } as const;
