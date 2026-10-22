@@ -1,26 +1,167 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+ * Design tokens — lifted 1:1 from the Claude Design source (Yield Website).
+ * ------------------------------------------------------------------------- */
+@theme {
+  --color-paper: #f5f3ef;
+  --color-ink: #0e0d0c;
+  --color-brand: #aa4747;
+  --color-muted: #545454; /* body copy on paper — 6.9:1 */
+  --color-stone: #a8a39b; /* eyebrows on ink — 7.6:1 */
+  --color-mist: #cfcac2; /* body copy on ink */
+
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-serif: var(--font-dm-serif), Georgia, serif;
+
+  /* The site's single motion signature: a long, decisive expo-out. */
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Layout rhythm */
+  --spacing-gutter: clamp(20px, 8.33vw, 144px);
+  --spacing-section: clamp(120px, 18vh, 220px);
+
+  /* Type scale (fluid). Named by role, not size. */
+  --text-display: clamp(40px, 5.6vw, 120px);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.025em;
+  --text-statement: clamp(34px, 4.6vw, 84px);
+  --text-statement--line-height: 1.12;
+  --text-statement--letter-spacing: -0.015em;
+  --text-heading: clamp(44px, 5.2vw, 90px);
+  --text-heading--line-height: 1;
+  --text-heading--letter-spacing: -0.02em;
+  --text-row: clamp(36px, 4.6vw, 84px);
+  --text-row--line-height: 1;
+  --text-row--letter-spacing: -0.02em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility px-gutter {
+  padding-inline: var(--spacing-gutter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility mx-gutter {
+  margin-inline: var(--spacing-gutter);
+}
+
+/* Small caps-style label used across the site. */
+@utility eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@utility label-lg {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
+  }
+
+  /* Anchored sections land clear of the fixed header. */
+  [id] {
+    scroll-margin-top: 24px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+ * Motion pre-states.
+ *
+ * An inline script in <head> marks <html data-js> before first paint, so
+ * elements that will animate in start hidden without a flash. Without JS
+ * (or if the motion runtime never boots — see the failsafe in IntroScript)
+ * everything renders in its final state.
+ *
+ * Reduced motion keeps the fades but drops all movement.
+ * ------------------------------------------------------------------------- */
+:root[data-js] [data-reveal],
+:root[data-js] [data-hero-fade] {
+  opacity: 0;
+}
+
+:root[data-js]:not([data-reduced]) {
+  & [data-reveal] {
+    transform: translateY(48px);
+  }
+  & [data-hero-fade] {
+    transform: translateY(16px);
+  }
+  & [data-line] {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+  }
+  & [data-mark-part] {
+    transform: translateY(105%);
+  }
+  & [data-mark-dot] {
+    transform: scale(0);
+  }
+}
+
+/*
+ * Hero lines only start hidden when there is no loader. When the loader runs,
+ * the headline paints in place beneath it (so LCP is recorded at first paint)
+ * and is tucked away by the loader sequence before the curtain lifts.
+ */
+:root[data-js][data-intro="none"]:not([data-reduced]) [data-hero] {
+  transform: translateY(108%) rotate(2deg);
+}
+
+/* The loader is server-rendered but only shown when the intro script asks for it. */
+[data-loader] {
+  display: none;
+}
+:root[data-intro="full"] [data-loader],
+:root[data-intro="quick"] [data-loader] {
+  display: flex;
+}
+
+/* Custom cursor only exists for fine pointers. */
+@media not (pointer: fine) {
+  [data-cursor] {
+    display: none;
+  }
+}
+
+/* The contact drawer is a native <dialog>; its own backdrop element animates. */
+dialog[data-drawer]::backdrop {
+  background: transparent;
+}
+
+/* Mission statement starts un-inked when the scroll runtime will drive it. */
+:root[data-js] [data-fill] {
+  --p: 0%;
 }
