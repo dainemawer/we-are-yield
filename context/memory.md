@@ -29,8 +29,11 @@ positive (see Gotchas).
       everyone (expected ≥95). One-line change in `src/lib/intro.ts` /
       IntroScript.
 
-- [ ] **Hero image: replace.** The design's team photo is out (Daine, 2026-10-22).
-      Direction being chosen; current file is a truncated placeholder.
+- [ ] **Hero image: removed for now** (2026-10-22). The design's team photo
+      was rejected and none of the Unsplash candidates were picked. To restore,
+      add the `data-parallax` / `data-parallax-img` frame back after the
+      `<section>` in `hero.tsx` (see git history); MotionRuntime already handles
+      the clip-open + parallax and no-ops when the frame is absent.
 - [ ] **Outbound URLs** — fill in `src/config/site.ts`:
       `links.calendly`, `links.pitchDeck`, `links.caseStudy`,
       `community[*].href` (Discord, Substack, Bluesky),

@@ -18,6 +18,7 @@ Daine made:
 | Hover-only row effects                    | Same effect on `:focus-visible`                    | Keyboard parity                         |
 | About/Services nav links always visible   | Hidden below 640px (Contact stays)                 | Header overflowed on phones             |
 | Hero lines wrap raggedly on phones        | `text-wrap: balance` per line                      | Avoids one-word orphans                 |
+| Full-bleed hero photo under the headline  | Removed until a replacement is chosen              | Team photo rejected (2026-10-22)        |
 | Cursor rAF loop runs forever              | Runs only while catching up                        | Idle CPU                                |
 | Count "20+" read mid-animation            | `sr-only` "20+", animated digits `aria-hidden`     | Screen readers                          |
 | Name field always auto-focused            | Only for fine pointers                             | Don't pop the keyboard over the drawer  |
