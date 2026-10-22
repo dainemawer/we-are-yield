@@ -5,6 +5,10 @@ Keep it short; move anything settled into `decisions/`.
 
 ## Status — 2026-10-22
 
+**Agent readiness + privacy page shipped** (2026-10-22, ADR 0009). is-agentic
+score was 70 before; Markdown negotiation, Markdown 404, `/llms.txt`,
+Organization JSON-LD and `/privacy` added. 38 tests pass.
+
 **v1 implemented.** Every section, interaction and motion sequence from the
 Claude Design file ("Yield Website.dc.html", project
 `74cf6b60-a70c-4a26-9988-c3871c9c864b`) is built. 26/26 Playwright tests
@@ -34,6 +38,11 @@ positive (see Gotchas).
       add the `data-parallax` / `data-parallax-img` frame back after the
       `<section>` in `hero.tsx` (see git history); MotionRuntime already handles
       the clip-open + parallax and no-ops when the frame is absent.
+- [ ] **Business address is TEMPORARY**: "Workshop17, Muizenberg, Cape Town,
+      7945" in `site.address` (`src/config/site.ts`). It appears in JSON-LD,
+      the privacy page, `/index.md` and `/llms.txt`. Replace with the real one.
+- [ ] **Privacy policy needs a legal read** before relying on it
+      (`src/content/privacy.ts`). Drafted in plain language against POPIA.
 - [ ] **Outbound URLs** — fill in `src/config/site.ts`:
       `links.calendly`, `links.pitchDeck`, `links.caseStudy`,
       `community[*].href` (Discord, Substack, Bluesky),

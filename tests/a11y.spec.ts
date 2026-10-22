@@ -17,6 +17,19 @@ test.describe("accessibility", () => {
     expect(results.violations).toEqual([]);
   });
 
+  for (const path of ["/privacy", "/does-not-exist"]) {
+    test(`${path} has no WCAG 2.2 AA violations`, async ({ page }) => {
+      await page.goto(path);
+      await revealEverything(page);
+
+      const results = await new AxeBuilder({ page })
+        .withTags(WCAG)
+        .exclude("[data-cursor]")
+        .analyze();
+      expect(results.violations).toEqual([]);
+    });
+  }
+
   test("open contact drawer has no WCAG 2.2 AA violations", async ({
     page,
   }) => {

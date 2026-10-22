@@ -21,7 +21,23 @@ export const site = {
   email: "hello@weareyield.digital",
   themeColor: "#0e0d0c",
   copyrightYear: 2026,
+  /** TEMPORARY placeholder until the registered business address is confirmed. */
+  address: {
+    street: "Workshop17, Muizenberg",
+    city: "Cape Town",
+    region: "Western Cape",
+    postalCode: "7945",
+    country: "South Africa",
+    countryCode: "ZA",
+  },
 } as const;
+
+export const postalAddress = [
+  site.address.street,
+  site.address.city,
+  site.address.postalCode,
+  site.address.country,
+].join(", ");
 
 export const links = {
   /** Calendly scheduling page. Until set, "Book a call" opens the contact drawer. */

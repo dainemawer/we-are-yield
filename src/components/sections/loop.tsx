@@ -1,6 +1,7 @@
 import { Kicker } from "@/components/ui/kicker";
 import { TextLink } from "@/components/ui/text-link";
 import { links } from "@/config/site";
+import { home } from "@/content/home";
 
 const PILLARS = [
   { n: "01", label: <>Save time</> },
@@ -31,15 +32,14 @@ export function Loop() {
             data-reveal=""
             className="m-0 max-w-[14ch] font-serif text-[clamp(40px,5.2vw,90px)] leading-[1.02] font-normal tracking-[-0.02em]"
           >
-            Always a human in the loop.
+            {home.loop.heading}
           </h2>
         </div>
         <p
           data-reveal=""
           className="m-0 max-w-[40ch] text-[clamp(18px,1.5vw,24px)] leading-[1.55] text-pretty text-mist"
         >
-          AI doesn’t replace your people — it empowers them. Yield ensures
-          automation is ethical, valuable, and aligned with your business goals.
+          {home.loop.body}
         </p>
       </div>
 
@@ -48,9 +48,13 @@ export function Loop() {
           data-reveal=""
           className="flex items-start font-serif text-[clamp(140px,19vw,340px)] leading-[0.82] tracking-[-0.05em]"
         >
-          <span className="sr-only">20+</span>
-          <span aria-hidden="true" data-count="20" className="tabular-nums">
-            20
+          <span className="sr-only">{home.loop.stat.value}+</span>
+          <span
+            aria-hidden="true"
+            data-count={home.loop.stat.value}
+            className="tabular-nums"
+          >
+            {home.loop.stat.value}
           </span>
           <span aria-hidden="true" className="text-brand">
             +
@@ -58,15 +62,13 @@ export function Loop() {
         </div>
         <div className="flex flex-col gap-8">
           <span data-reveal="" className="eyebrow text-stone">
-            Hours saved per week
+            {home.loop.stat.label}
           </span>
           <p
             data-reveal=""
             className="m-0 font-serif text-[clamp(24px,2.2vw,38px)] leading-[1.3] text-pretty"
           >
-            A retail client saved 20+ hours per week by automating inventory
-            reports and customer responses. That time now goes into growth
-            initiatives instead of spreadsheets.
+            {home.loop.caseStudy}
           </p>
           <div data-reveal="">
             <TextLink href={links.caseStudy}>Read case study</TextLink>

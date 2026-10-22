@@ -149,3 +149,34 @@ test.describe("progressive enhancement", () => {
     expect(overflow).toBeLessThanOrEqual(0);
   });
 });
+
+test.describe("privacy page", () => {
+  test("has no loader and links back to homepage sections", async ({
+    page,
+    isMobile,
+  }) => {
+    await page.goto("/privacy");
+    await expect(page.locator("html")).toHaveAttribute("data-intro", "none");
+    await expect(page.locator("[data-loader]")).toHaveCount(0);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Privacy");
+
+    // About is hidden in the header on phones; the footer link works everywhere.
+    const about = isMobile
+      ? page.getByRole("contentinfo").getByRole("link", { name: "About Us" })
+      : page.getByRole("banner").getByRole("link", { name: "About" });
+    await about.click();
+    await expect(page).toHaveURL(/\/#about$/);
+    await expect(page.locator("#about")).toBeInViewport();
+  });
+
+  test("opens the contact drawer from the header", async ({ page }) => {
+    await page.goto("/privacy");
+    await page
+      .getByRole("banner")
+      .getByRole("link", { name: "Contact" })
+      .click();
+    await expect(
+      page.getByRole("dialog", { name: "Contact Yield" }),
+    ).toBeVisible();
+  });
+});

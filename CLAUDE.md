@@ -32,6 +32,8 @@ pnpm test:e2e       # e2e + a11y, against a production build (run build first)
 - `src/config/site.ts` — **all** copy-adjacent facts: URLs, email, services,
   values, outbound links. Links set to `null` render as inert text; never ship
   `href="#"`.
+- `src/content/*` — long-form copy (homepage prose, privacy policy) shared by
+  the pages and their Markdown versions (`src/lib/markdown.ts`, ADR 0009).
 - `src/components/sections/*` — one Server Component per page section. No
   client JS. Motion is declared with `data-*` attributes.
 - `src/components/motion/*` — the only client islands besides the drawer:

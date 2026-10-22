@@ -8,7 +8,8 @@ import { INTRO_STORAGE_KEY } from "@/lib/intro";
  * - `data-intro`    → which loader to play:
  *     full  — first ever visit: the cinematic loader
  *     quick — returning visitor, new session: the same sequence at ~55% length
- *     none  — already seen this session, deep link, or reduced motion
+ *     none  — already seen this session, deep link, another page (only the
+ *             homepage has a loader), or reduced motion
  *
  * Failsafe: if the motion runtime hasn't booted within 8s (script error,
  * extremely slow device) everything is revealed so content is never stranded.
@@ -20,7 +21,7 @@ var r=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(r)d.setAttribute('data-reduced','');
 var i='full';
 try{if(sessionStorage.getItem(k))i='none';else if(localStorage.getItem(k))i='quick';}catch(e){}
-if(r||location.hash.length>1)i='none';
+if(r||location.hash.length>1||location.pathname!=='/')i='none';
 d.setAttribute('data-intro',i);
 setTimeout(function(){if(!window.__yieldMotion){d.removeAttribute('data-js');d.setAttribute('data-intro','none');}},8000);
 })()`;

@@ -1,4 +1,5 @@
 import { Kicker } from "@/components/ui/kicker";
+import { home } from "@/content/home";
 
 /**
  * The mission statement "inks in" as it scrolls through the viewport: a solid
@@ -16,9 +17,7 @@ export function Mission() {
           data-fill=""
           className="[background-image:linear-gradient(var(--color-ink),var(--color-ink)),linear-gradient(rgb(14_13_12/.14),rgb(14_13_12/.14))] [background-size:var(--p,100%)_100%,100%_100%] bg-clip-text [background-repeat:no-repeat] text-transparent [-webkit-background-clip:text]"
         >
-          “Our mission at Yield is to help businesses turn ideas into impact by
-          building fast, embedding intelligence, and guiding digital growth with
-          clarity and honesty.”
+          “{home.mission}”
         </span>
       </p>
     </section>

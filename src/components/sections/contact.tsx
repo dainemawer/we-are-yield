@@ -1,6 +1,7 @@
 import { Kicker } from "@/components/ui/kicker";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { links, mailto } from "@/config/site";
+import { home } from "@/content/home";
 
 const pill =
   "label-lg inline-flex items-center gap-3 rounded-full px-[30px] py-5 transition-[background-color,color] duration-400";
@@ -25,7 +26,7 @@ export function Contact() {
           data-reveal=""
           className="m-0 max-w-[30ch] text-[clamp(19px,1.7vw,28px)] leading-[1.45]"
         >
-          Let’s explore how AI automation could work in your business.
+          {home.contact}
         </p>
         <div data-reveal="" className="flex flex-wrap gap-4">
           <a

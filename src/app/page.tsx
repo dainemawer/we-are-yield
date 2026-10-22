@@ -12,17 +12,39 @@ import { Services } from "@/components/sections/services";
 import { SiteFooter } from "@/components/sections/site-footer";
 import { SiteHeader } from "@/components/sections/site-header";
 import { Values } from "@/components/sections/values";
-import { site } from "@/config/site";
+import { community, services, site, social } from "@/config/site";
+
+const sameAs = [...social, ...community].flatMap((s) =>
+  s.href ? [s.href] : [],
+);
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": "Organization",
+  "@id": `${site.url}/#organization`,
   name: site.name,
+  legalName: site.legalName,
   url: site.url,
+  logo: `${site.url}/icon.svg`,
   email: site.email,
   description: site.description,
   slogan: site.tagline,
-  logo: `${site.url}/icon.svg`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    postalCode: site.address.postalCode,
+    addressCountry: site.address.countryCode,
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: site.email,
+    availableLanguage: "en",
+  },
+  knowsAbout: services.map((s) => s.name),
+  ...(sameAs.length > 0 && { sameAs }),
 };
 
 /**

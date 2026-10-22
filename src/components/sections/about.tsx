@@ -1,5 +1,6 @@
 import { TextLink } from "@/components/ui/text-link";
 import { links } from "@/config/site";
+import { home } from "@/content/home";
 
 export function About() {
   return (
@@ -24,12 +25,7 @@ export function About() {
           data-reveal=""
           className="m-0 mb-10 text-[clamp(19px,1.6vw,26px)] leading-normal text-pretty"
         >
-          Yield helps startups and growing businesses move from idea to
-          execution faster. Through rapid MVP development, AI automation, and
-          digital consulting, we deliver outcomes by design — combining
-          cutting-edge innovation with a structured process. With honesty,
-          agility, and premium craft, we’re the partner businesses trust to save
-          time, optimize resources, and stay ahead of what’s next.
+          {home.about}
         </p>
         <div data-reveal="">
           <TextLink href={links.pitchDeck}>View pitch deck</TextLink>

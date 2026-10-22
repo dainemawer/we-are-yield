@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { AnimatedMark } from "@/components/brand/logo";
 import { services, site, social } from "@/config/site";
 
 const linkClass = "hover:text-brand transition-colors duration-300";
 
-export function SiteFooter() {
+export function SiteFooter({ home = true }: { home?: boolean }) {
+  const Anchor = home ? "a" : Link;
+  const to = (hash: `#${string}`) => (home ? hash : (`/${hash}` as const));
+
   return (
     <footer className="flex flex-col gap-[clamp(48px,8vh,96px)] bg-ink px-gutter pt-[clamp(72px,12vh,140px)] pb-10 text-paper">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] gap-10 text-[15px] leading-[1.9]">
@@ -11,15 +15,15 @@ export function SiteFooter() {
           <h2 id="footer-site" className="m-0 mb-4 eyebrow text-stone">
             Site
           </h2>
-          <a href="#about" className={linkClass}>
+          <Anchor href={to("#about")} className={linkClass}>
             About Us
-          </a>
-          <a href="#services" className={linkClass}>
+          </Anchor>
+          <Anchor href={to("#services")} className={linkClass}>
             Services
-          </a>
-          <a href="#contact" className={linkClass}>
+          </Anchor>
+          <Anchor href={to("#contact")} className={linkClass}>
             Contact
-          </a>
+          </Anchor>
         </nav>
         <div className="flex flex-col">
           <h2 className="m-0 mb-4 eyebrow text-stone">Services</h2>
@@ -59,12 +63,20 @@ export function SiteFooter() {
         <span>
           Copyright {site.copyrightYear}. {site.legalName}. All rights reserved.
         </span>
-        <a
-          href="#top"
-          className="transition-colors duration-300 hover:text-paper"
-        >
-          Back to top ↑
-        </a>
+        <div className="flex gap-8">
+          <Link
+            href="/privacy"
+            className="transition-colors duration-300 hover:text-paper"
+          >
+            Privacy
+          </Link>
+          <a
+            href="#top"
+            className="transition-colors duration-300 hover:text-paper"
+          >
+            Back to top ↑
+          </a>
+        </div>
       </div>
     </footer>
   );

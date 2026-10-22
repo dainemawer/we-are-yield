@@ -17,3 +17,4 @@ One file per decision: `NNNN-short-title.md`. Short is fine. Format:
 | 0006 | Contact: native `<dialog>` + Server Action via Resend          |
 | 0007 | Central site config; unset links render inert                  |
 | 0008 | Deliberate deviations from the design                          |
+| 0009 | Agent-readable: Markdown negotiation, llms.txt, privacy page   |
